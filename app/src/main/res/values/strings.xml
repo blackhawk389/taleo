@@ -1,45 +1,13 @@
 <resources>
-    <string name="app_name">Bizzcons</string>
-    <string name="bizzcons">Bizzcons</string>
-    <string name="dreaming_realities">Dreaming Realities</string>
-
+    <string name="app_name">Objective</string>
     <string name="dummy_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
     <string name="next">Next</string>
     <string name="finish">Finish</string>
-    <string name="enter_your_email">Email Address</string>
-    <string name="enter_your_password">Password</string>
-    <string name="sign_in">Sign In</string>
-    <string name="register">Register</string>
-    <string name="your_name">Name</string>
-    <string name="enter_your_phone_number">Phone</string>
-    <string name="enter_your_address">Address</string>
-    <string name="select_your_date_of_birth">Date of Birth</string>
-    <string name="select_profile_pic">Profile Picture</string>
-    <string name="sign_up">Sign Up</string>
-    <string name="use_current_location">Use Current Location</string>
-    <string name="write_address">Type Address</string>
-    <string name="upload_with_camera">Upload with camera</string>
-    <string name="upload_from_gallery">Upload from gallery</string>
-    <string name="basic_information">Basic Information</string>
-    <string name="profile_picture">Profile Picture</string>
-    <string name="new_here">New here? Sign Up</string>
-    <string name="need_permissions">Permissions Request</string>
-    <string name="permission_message">Bizzcons need some permissions to work fine which are</string>
-    <string name="grant_permissions">Grant Permissions</string>
     <string name="cancel">Cancel</string>
     <string name="permission_message_acceptance">You need to accept permissions to use this app</string>
-    <string name="date_of_birth">Date of Birth</string>
-    <string name="write_here">Write here</string>
-    <string name="update_address">Update Address</string>
-    <string name="search_projects">Search Projects</string>
-    <string name="recent_projects">Recent Projects</string>
-    <string name="our_blogs">Our Blogs</string>
-    <string name="login">Login</string>
     <string name="open_nav">Open Nav</string>
     <string name="close_nav">Close Nav</string>
     <string name="home">Home</string>
-    <string name="blogs">Blogs</string>
-    <string name="projects">Projects</string>
     <string name="more">More</string>
     <string name="something_went_wrong">Something Went Wrong</string>
     <string name="use_offline_mode">Your data will be synced shortly.To use offline mode please continue</string>
@@ -100,5 +68,8 @@
     <string name="objective">Objective</string>
 
     <string name="username">Hi %s</string>
+    <string name="all_photos">All Photos</string>
+    <string name="all_posts">All Posts</string>
+    <string name="objective_2021">Objective 2021</string>
 
 </resources>

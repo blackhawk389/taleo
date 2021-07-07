@@ -2,11 +2,11 @@ package com.sarah.objectives.repository
 
 import android.content.Context
 import com.google.common.truth.Truth.assertThat
-import com.sarah.objectives.apiservice.PostAPIService
+import com.sarah.objectives.apiservice.PhotoAPIService
 import com.sarah.objectives.config.dao.PostDao
 import com.sarah.objectives.config.db.ObjectiveDatabase
-import com.sarah.objectives.datasource.PostDataSource
-import com.sarah.objectives.repositories.PostRepository
+import com.sarah.objectives.datasource.PhotoDataSource
+import com.sarah.objectives.repositories.PhotoRepository
 import com.sarah.objectives.utils.getBlogDao
 import com.sarah.objectives.utils.getDatabase
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -18,12 +18,13 @@ import org.mockito.Mock
 import org.mockito.MockitoAnnotations
 
 @ExperimentalCoroutinesApi
-class PostRepositoryTest {
-    private lateinit var repository: PostRepository
-    private lateinit var dataSource: PostDataSource
+class PhotoRepositoryTest {
+
+    private lateinit var repository: PhotoRepository
+    private lateinit var dataSource: PhotoDataSource
 
     @Mock
-    private lateinit var apiService: PostAPIService
+    private lateinit var apiService: PhotoAPIService
 
     @Mock
     private lateinit var context: Context
@@ -35,8 +36,8 @@ class PostRepositoryTest {
     fun setup() {
         MockitoAnnotations.initMocks(this)
         setupDatabase()
-        dataSource = PostDataSource(apiService, db)
-        repository = PostRepository(dataSource)
+        dataSource = PhotoDataSource(apiService, db)
+        repository = PhotoRepository(dataSource)
 
     }
 
@@ -51,8 +52,8 @@ class PostRepositoryTest {
     }
 
     @Test
-    fun `get all posts` () = runBlockingTest {
-        repository.getAllPosts()
-        assertThat(repository.getAllPosts()).isEqualTo(dataSource.getAllPosts())
+    fun `get all photos` () = runBlockingTest {
+        repository.getAllPhotos()
+        assertThat(repository.getAllPhotos()).isEqualTo(dataSource.getAllPhotos())
     }
 }

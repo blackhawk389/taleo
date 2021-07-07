@@ -27,12 +27,6 @@ class SplashViewModel constructor(private val repository: SplashRepository) : Vi
     val imageResponse = _imageResponse
 
 
-    private var _servicesResponse = MutableLiveData<Resource<Services>>()
-
-    val servicesResponse: LiveData<Resource<Services>>
-        get() = _servicesResponse
-
-
     fun getBlog() {
         viewModelScope.launch {
             _postsResponse.value = repository.getPosts()
@@ -47,11 +41,6 @@ class SplashViewModel constructor(private val repository: SplashRepository) : Vi
         }
     }
 
-    fun getServices() {
-        viewModelScope.launch {
-            _servicesResponse.value = repository.getServices()
-        }
-    }
 
     fun insertPosts(posts: ArrayList<PostsItem>) {
         viewModelScope.launch {

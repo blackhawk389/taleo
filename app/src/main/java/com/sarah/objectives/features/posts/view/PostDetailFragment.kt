@@ -3,7 +3,6 @@ package com.sarah.objectives.features.posts.view
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.sarah.objectives.base.BaseFragment
-import com.sarah.objectives.data.blogs.PostItems
 import com.sarah.objectives.data.posts.PostsItem
 import com.sarah.objectives.databinding.FragmentBlogDetailBinding
 import com.sarah.objectives.extras.EmptyRepository

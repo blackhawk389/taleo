@@ -9,7 +9,10 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -105,6 +108,10 @@ fun RecyclerView.init(context: Context, recyclerAdapter: RecyclerView.Adapter<*>
         adapter = recyclerAdapter
 
     }
+}
+
+fun View.setColor(context: Context,@ColorRes color:Int) {
+    this.setBackgroundColor(ContextCompat.getColor(context,color))
 }
 
 

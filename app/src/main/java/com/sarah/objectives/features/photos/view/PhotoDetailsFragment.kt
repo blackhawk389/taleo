@@ -3,14 +3,11 @@ package com.sarah.objectives.features.photos.view
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.google.gson.Gson
-import com.sarah.objectives.R
 import com.sarah.objectives.base.BaseFragment
 import com.sarah.objectives.data.photos.PhotosItem
-import com.sarah.objectives.data.projects.Data
 import com.sarah.objectives.databinding.FragmentPhotoDetailsBinding
 import com.sarah.objectives.extras.EmptyRepository
 import com.sarah.objectives.utils.applyImage
-import com.sarah.objectives.utils.applyResource
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 

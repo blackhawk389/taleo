@@ -5,11 +5,12 @@ import com.sarah.objectives.base.BaseResponse
 import com.sarah.objectives.config.db.ObjectiveDatabase
 import javax.inject.Inject
 
-
 class PostDataSource @Inject constructor(
     private val apiService: PostAPIService,
-    private val database: ObjectiveDatabase
+    db: ObjectiveDatabase
 ) : BaseResponse() {
 
-    suspend fun getProjects() = database.photoDao().getAllPhotos()
+    suspend fun getAllPosts() = getResponse {
+        apiService.getAllPosts()
+    }
 }

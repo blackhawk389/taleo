@@ -1,12 +1,12 @@
 package com.sarah.objectives.apiservice
 
-import com.sarah.objectives.data.blogs.Blogs
+import com.sarah.objectives.data.photos.PhotosItem
+import retrofit2.Response
 import retrofit2.http.GET
-import retrofit2.http.Path
 
 
 interface PhotoAPIService {
 
     @GET("photos")
-    suspend fun getPhotos(@Path("pageNo") position: Int):Blogs
+    suspend fun getPhotos():Response<ArrayList<PhotosItem>>
 }

@@ -38,13 +38,13 @@ class HomeRepositoryTest {
     }
 
     @Test
-    fun `get recent blog`() = runBlockingTest {
+    fun `get recent posts`() = runBlockingTest {
         repository.getRecentPosts()
         assertThat(repository.getRecentPosts()).isEqualTo(dataSource.getRecentPosts())
     }
 
     @Test
-    fun `get recent projects`() = runBlockingTest {
+    fun `get recent photos`() = runBlockingTest {
         repository.getPhotoItems()
         assertThat(repository.getRecentPosts()).isEqualTo(dataSource.getRecentPhotos())
     }

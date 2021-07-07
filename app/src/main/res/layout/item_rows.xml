@@ -15,39 +15,49 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/title"
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/unit_2x"
-            android:layout_marginStart="@dimen/unit_2x"
-            android:layout_marginTop="@dimen/unit_1x"
-            android:layout_marginEnd="@dimen/unit_2x"
-            android:ellipsize="end"
-            android:text="@{posts.title}"
-            android:gravity="center"
-            android:textColor="@color/black"
-            android:padding="@dimen/unit_2x"
-            android:textStyle="bold"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Constuction Items Blah Blah Blah!!" />
+            android:background="@drawable/blue_border"
+            android:orientation="vertical"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/unit_2x"
+                android:layout_marginTop="@dimen/unit_1x"
+                android:layout_marginEnd="@dimen/unit_2x"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:padding="@dimen/unit_2x"
+                android:text="@{posts.title}"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Constuction Items Blah Blah Blah!!" />
 
 
-        <TextView
-            android:id="@+id/userID"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/unit_2x"
-            android:layout_marginStart="@dimen/unit_1x"
-            android:layout_marginTop="@dimen/unit_2x"
-            android:layout_marginEnd="@dimen/unit_2x"
-            android:ellipsize="end"
-            android:text="@{`By User:` + posts.userId}"
-            android:gravity="center"
-            android:textColor="@color/black"
-            android:padding="@dimen/unit_2x"
-            android:textStyle="bold"
-            app:layout_constraintTop_toBottomOf="@id/title"
-            tools:text="By user : 01" />
+            <TextView
+                android:id="@+id/userID"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/unit_1x"
+                android:layout_marginTop="@dimen/unit_1x"
+                android:layout_marginEnd="@dimen/unit_2x"
+                android:layout_marginBottom="@dimen/unit_1x"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:padding="@dimen/unit_2x"
+                android:text="@{`By User:` + posts.userId}"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@id/title"
+                tools:text="By user : 01" />
+        </LinearLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
