@@ -1,0 +1,36 @@
+android {
+
+    def keys = new Properties()
+    file("buildsystem/keys.properties").withInputStream {
+        stream -> keys.load(stream)
+    }
+
+    flavorDimensions 'environment'
+
+    productFlavors {
+        dev {
+            applicationIdSuffix ".dev"
+            dimension 'environment'
+
+        }
+
+        qa {
+
+            applicationIdSuffix ".qa"
+            dimension 'environment'
+        }
+
+        stage {
+
+            applicationIdSuffix ".stage"
+            dimension 'environment'
+        }
+
+        prod {
+
+            dimension 'environment'
+        }
+    }
+
+
+}

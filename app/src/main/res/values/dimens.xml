@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="font_12sp">12sp</dimen>
+    <dimen name="font_14sp">14sp</dimen>
+    <dimen name="font_16sp">16sp</dimen>
+    <dimen name="font_18sp">18sp</dimen>
+    <dimen name="font_20sp">20sp</dimen>
+    <dimen name="font_22sp">22sp</dimen>
+    <dimen name="font_24sp">24sp</dimen>
+    <dimen name="font_26sp">26sp</dimen>
+    <dimen name="font_28sp">28sp</dimen>
+    <dimen name="font_30sp">20sp</dimen>
+
+
+    <dimen name="unit_1x">8dp</dimen>
+    <dimen name="unit_2x">16dp</dimen>
+    <dimen name="unit_3x">24dp</dimen>
+    <dimen name="unit_4x">32dp</dimen>
+    <dimen name="unit_5x">40dp</dimen>
+    <dimen name="unit_6x">48dp</dimen>
+    <dimen name="unit_7x">56dp</dimen>
+    <dimen name="unit_8x">64dp</dimen>
+    <dimen name="unit_9x">72dp</dimen>
+    <dimen name="unit_10x">80dp</dimen>
+
+    <dimen name="anim_height_400">400dp</dimen>
+    <dimen name="anim_height_300">200dp</dimen>
+    <dimen name="anim_height_200">200dp</dimen>
+    <dimen name="heading_text_size">35sp</dimen>
+    <dimen name="profileLayoutDimens">200dp</dimen>
+</resources>

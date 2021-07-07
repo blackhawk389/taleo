@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_margin="@dimen/unit_2x"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="100dp"
+            tools:src="@mipmap/ic_launcher"
+            android:layout_height="100dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:id="@+id/photo"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

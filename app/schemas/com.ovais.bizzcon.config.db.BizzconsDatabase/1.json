@@ -1,0 +1,138 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "26acdc71c4aeae896b38953c7490106b",
+    "entities": [
+      {
+        "tableName": "blogs",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`blog_id` INTEGER NOT NULL, `blog_title` TEXT NOT NULL, `blog_subtitle` TEXT NOT NULL, `blog_details` TEXT NOT NULL, `blog_imageURL` TEXT NOT NULL, `blog_created` TEXT NOT NULL, `blog_modified` TEXT NOT NULL, PRIMARY KEY(`blog_id`))",
+        "fields": [
+          {
+            "fieldPath": "blog_id",
+            "columnName": "blog_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "blog_title",
+            "columnName": "blog_title",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "blog_sub_title",
+            "columnName": "blog_subtitle",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "blog_description",
+            "columnName": "blog_details",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "blog_header_image",
+            "columnName": "blog_imageURL",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "createdAt",
+            "columnName": "blog_created",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "updatedAt",
+            "columnName": "blog_modified",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "blog_id"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [
+          {
+            "name": "index_blogs_blog_id",
+            "unique": true,
+            "columnNames": [
+              "blog_id"
+            ],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_blogs_blog_id` ON `${TABLE_NAME}` (`blog_id`)"
+          }
+        ],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "projects",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`project_id` INTEGER NOT NULL, `project_title` TEXT NOT NULL, `project_details` TEXT NOT NULL, `project_imageURL` TEXT NOT NULL, `project_created` TEXT NOT NULL, `project_modified` TEXT NOT NULL, PRIMARY KEY(`project_id`))",
+        "fields": [
+          {
+            "fieldPath": "project_id",
+            "columnName": "project_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "project_title",
+            "columnName": "project_title",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "project_description",
+            "columnName": "project_details",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "project_image",
+            "columnName": "project_imageURL",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "createdAt",
+            "columnName": "project_created",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "updatedAt",
+            "columnName": "project_modified",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "project_id"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [
+          {
+            "name": "index_projects_project_id",
+            "unique": true,
+            "columnNames": [
+              "project_id"
+            ],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_projects_project_id` ON `${TABLE_NAME}` (`project_id`)"
+          }
+        ],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '26acdc71c4aeae896b38953c7490106b')"
+    ]
+  }
+}

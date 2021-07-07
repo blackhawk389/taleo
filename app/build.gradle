@@ -1,0 +1,14 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-android-extensions'
+    id 'androidx.navigation.safeargs.kotlin'
+    id 'dagger.hilt.android.plugin'
+    id 'kotlin-kapt'
+}
+
+apply from: 'buildsystem/flavors.gradle'
+apply from: 'buildsystem/defaultconfig.gradle'
+apply from: 'buildsystem/dependencies.gradle'
+apply from: 'buildsystem/config.gradle'
+

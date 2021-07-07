@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav"
+    app:startDestination="@id/splashFragment">
+
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.sarah.objectives.features.splash.view.SplashFragment"
+        android:label="fragment_splash"
+        tools:layout="@layout/fragment_splash">
+        <action
+            android:id="@+id/action_splashFragment_to_introFragment"
+            app:destination="@id/introFragment" />
+
+        <action
+            android:id="@+id/action_splashFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/introFragment"
+        android:name="com.sarah.objectives.features.intro.view.IntroFragment"
+        android:label="fragment_intro"
+        tools:layout="@layout/fragment_intro">
+
+        <action
+            android:id="@+id/action_introFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.sarah.objectives.features.home.view.HomeFragment"
+        android:label="HomeFragment"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_serviceDetailFragment"
+            app:destination="@id/serviceDetailFragment" />
+        <action
+            android:id="@+id/action_home_to_post_details"
+            app:destination="@id/postDetailFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_projectDetailsFragment"
+            app:destination="@id/photoDetailsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_allProjectFragment"
+            app:destination="@id/allProjectFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_allBlogFragment"
+            app:destination="@id/allBlogFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/serviceDetailFragment"
+        android:name="com.sarah.objectives.features.services.view.ServiceDetailFragment"
+        android:label="Service Details"
+        tools:layout="@layout/fragment_service_details" />
+    <fragment
+        android:id="@+id/postDetailFragment"
+        android:name="com.sarah.objectives.features.posts.view.PostDetailFragment"
+        android:label="BlogDetailFragment"
+        tools:layout="@layout/fragment_blog_detail" />
+    <fragment
+        android:id="@+id/photoDetailsFragment"
+        android:name="com.sarah.objectives.features.photos.view.PhotoDetailsFragment"
+        android:label="ProjectDetailsFragment"
+        tools:layout="@layout/fragment_photo_details" />
+
+    <fragment
+        android:id="@+id/allBlogFragment"
+        android:name="com.sarah.objectives.features.posts.view.AllPostFragment"
+        android:label="All Blog "
+        tools:layout="@layout/fragment_all_blog" >
+        <action
+            android:id="@+id/action_allBlogFragment_to_blogDetailFragment"
+            app:destination="@id/postDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/allProjectFragment"
+        android:name="com.sarah.objectives.features.photos.view.AllPhotosFragment"
+        android:label="All Projects"
+        tools:layout="@layout/fragment_all_projects" >
+        <action
+            android:id="@+id/action_allProjectFragment_to_projectDetailsFragment"
+            app:destination="@id/photoDetailsFragment" />
+    </fragment>
+</navigation>
