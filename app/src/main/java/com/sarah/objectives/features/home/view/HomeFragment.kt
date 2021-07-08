@@ -27,8 +27,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class HomeFragment : BaseFragment<FragmentHomeBinding, HomeRepository>(),
-    OnPostTapListener, onPhotoClickListener {
+class HomeFragment : BaseFragment<FragmentHomeBinding, HomeRepository>(), OnPostTapListener, onPhotoClickListener {
 
     private lateinit var viewModel: HomeViewModel
     private lateinit var postAdapter: PostAdapter
@@ -121,7 +120,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeRepository>(),
 
     private fun setupPostRecyclerView() {
         binding.recentBlogsRecyclerView.apply {
-            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            layoutManager = LinearLayoutManager(requireContext())
             adapter = postAdapter
         }
     }

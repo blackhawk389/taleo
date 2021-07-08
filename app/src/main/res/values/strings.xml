@@ -45,5 +45,8 @@
     <string name="all_photos">All Photos</string>
     <string name="all_posts">All Posts</string>
     <string name="objective_2021">Objective 2021</string>
+    <string name="intro_posts">The app will focus on user\'s post</string>
+    <string name="intro_image">The app will focus on images</string>
+    <string name="intro_fun">Have fun</string>
 
 </resources>
