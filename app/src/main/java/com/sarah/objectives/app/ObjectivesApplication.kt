@@ -4,13 +4,14 @@ import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
 import androidx.work.*
-import com.google.android.gms.ads.MobileAds
+import com.sarah.objectives.BuildConfig
 import com.sarah.objectives.preferences.PreferenceHelper
-import com.sarah.objectives.utils.Constants.WORKER.TAG_POST
 import com.sarah.objectives.utils.Constants.WORKER.TAG_PHOTOS
-import com.sarah.objectives.worker.PostWorker
+import com.sarah.objectives.utils.Constants.WORKER.TAG_POST
 import com.sarah.objectives.worker.PhotoWorker
+import com.sarah.objectives.worker.PostWorker
 import dagger.hilt.android.HiltAndroidApp
+import timber.log.Timber
 import java.util.concurrent.TimeUnit
 
 @HiltAndroidApp
@@ -23,16 +24,12 @@ class ObjectivesApplication : Application() {
         PreferenceHelper.getInstance(this)
         workManager = WorkManager.getInstance(this)
         context = this
-//        if (BuildConfig.DEBUG) {
-//            Timber.plant(Timber.DebugTree())
-//        }
+        if (BuildConfig.DEBUG) {
+            Timber.plant(Timber.DebugTree())
+        }
         enqueueWorker()
-        initializeAds()
     }
 
-    private fun initializeAds(){
-        MobileAds.initialize(this)
-    }
 
     companion object {
         @SuppressLint("StaticFieldLeak")

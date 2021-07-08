@@ -6,13 +6,11 @@ import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.gms.ads.AdRequest
 import com.google.gson.Gson
 import com.sarah.objectives.R
 import com.sarah.objectives.base.BaseFragment
 import com.sarah.objectives.base.Resource
 import com.sarah.objectives.callbacks.OnPostTapListener
-import com.sarah.objectives.callbacks.ServiceListener
 import com.sarah.objectives.callbacks.onPhotoClickListener
 import com.sarah.objectives.data.photos.PhotosItem
 import com.sarah.objectives.data.posts.PostsItem
@@ -21,9 +19,6 @@ import com.sarah.objectives.datasource.HomeDataSource
 import com.sarah.objectives.features.home.viewmodel.HomeViewModel
 import com.sarah.objectives.features.photos.adapter.PhotoAdapter
 import com.sarah.objectives.features.posts.adapter.PostAdapter
-import com.sarah.objectives.features.services.adapter.ServiceAdapter
-import com.sarah.objectives.features.services.model.Services
-import com.sarah.objectives.preferences.PreferenceHelper
 import com.sarah.objectives.repositories.HomeRepository
 import com.sarah.objectives.utils.routeTo
 import com.sarah.objectives.utils.showToast
@@ -32,9 +27,9 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class HomeFragment : BaseFragment<FragmentHomeBinding, HomeRepository>(), ServiceListener, OnPostTapListener, onPhotoClickListener {
+class HomeFragment : BaseFragment<FragmentHomeBinding, HomeRepository>(),
+    OnPostTapListener, onPhotoClickListener {
 
-    private lateinit var serviceAdapter: ServiceAdapter
     private lateinit var viewModel: HomeViewModel
     private lateinit var postAdapter: PostAdapter
     private lateinit var photoAdapter: PhotoAdapter
@@ -53,32 +48,18 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeRepository>(), Servic
     ): FragmentHomeBinding = FragmentHomeBinding.inflate(inflater, container, false)
 
     override fun onPostInit() {
-        binding.headerText.value(getString(R.string.username,"Sarah"))
-        setupAds()
+        binding.headerText.value(getString(R.string.username, "Sarah"))
         setupViewModel()
         setupAdapter()
-        setupServices()
         setupPosts()
         setupPhotos()
         routeToAllBlog()
         routeToAllProjects()
-        setupLogoutListeners()
         setupRecyclerViews()
     }
 
-    private fun setupAds() {
-        val adRequest = AdRequest.Builder().build()
-        binding.adView.loadAd(adRequest)
-    }
 
-    private fun setupLogoutListeners() {
-        binding.logout.setOnClickListener {
-            PreferenceHelper.clearLoggedInPreferences()
-            showToast(getString(R.string.logging_out))
-        }
-    }
     private fun setupAdapter() {
-        serviceAdapter = ServiceAdapter(this)
         postAdapter = PostAdapter(this)
         photoAdapter = PhotoAdapter(this)
 
@@ -88,7 +69,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeRepository>(), Servic
         viewModel.requestPosts()
         viewModel.posts.observe(viewLifecycleOwner, Observer {
             if (it.status == Resource.Status.SUCCESS) {
-                    postAdapter.addPosts(it.data!!)
+                postAdapter.addPosts(it.data!!)
                 hideProgressLoader(binding.progressBar)
 
             }
@@ -108,6 +89,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeRepository>(), Servic
         setupPostRecyclerView()
         setupPhotosRecyclerView()
     }
+
     private fun setupPhotos() {
         viewModel.requestImages()
         viewModel.photoItems.observe(viewLifecycleOwner, Observer {
@@ -139,10 +121,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeRepository>(), Servic
 
     private fun setupPostRecyclerView() {
         binding.recentBlogsRecyclerView.apply {
-            layoutManager =
-                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
             adapter = postAdapter
-
         }
     }
 
@@ -151,52 +131,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeRepository>(), Servic
         binding.lifecycleOwner = this
     }
 
-    private fun setupServices() {
-        serviceAdapter.addServices(getServices())
-        binding.servicesRecyclerView.apply {
-            layoutManager =
-                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-            adapter = serviceAdapter
-        }
-    }
-
-    private fun getServices() = arrayListOf(
-        Services(
-            R.drawable.ic_camera,
-            getString(R.string.design_consultancy),
-            getString(R.string.design_consultancy_desc)
-        ),
-        Services(
-            R.drawable.ic_address,
-            getString(R.string.interior_design_deco),
-            getString(R.string.interior_desc)
-        ),
-        Services(
-            R.drawable.ic_address,
-            getString(R.string.turnkey_solution),
-            getString(R.string.turnkey_desc)
-        ),
-        Services(
-            R.drawable.ic_address,
-            getString(R.string.gray_structure),
-            getString(R.string.gray_structure_desc)
-        ),
-        Services(
-            R.drawable.ic_address,
-            getString(R.string.house_renovation),
-            getString(R.string.renovation_desc)
-        ),
-        Services(
-            R.drawable.ic_address,
-            getString(R.string.real_estate),
-            getString(R.string.real_estate_desc)
-        )
-    )
-
-
-    override fun onServiceClicked(data: Services) {
-        routeTo(R.id.action_homeFragment_to_serviceDetailFragment, bundleOf("service" to data))
-    }
 
     override fun onPostClicked(data: PostsItem) {
         routeTo(R.id.action_home_to_post_details, bundleOf("posts" to data))

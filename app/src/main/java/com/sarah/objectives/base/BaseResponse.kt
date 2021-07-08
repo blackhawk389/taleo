@@ -2,9 +2,7 @@ package com.sarah.objectives.base
 
 import com.google.gson.Gson
 import com.sarah.objectives.config.network.NoConnectivityException
-import com.sarah.objectives.events.LogoutEvent
 import com.sarah.objectives.utils.Constants
-import org.greenrobot.eventbus.EventBus
 import retrofit2.Response
 import timber.log.Timber
 import java.io.BufferedReader
@@ -51,7 +49,7 @@ abstract class BaseResponse {
         val json = errorBodyToString(response)
         val responseError = gson.fromJson(json, BaseErrorResponse::class.java)
         if (responseError.error == Constants.NETWORK_CONSTANTS.unAuthorizeAccessMessage){
-            EventBus.getDefault().post(LogoutEvent())
+
             return error("",responseError)
         }
         return error("", responseError)

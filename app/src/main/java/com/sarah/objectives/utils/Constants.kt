@@ -6,8 +6,6 @@ object Constants {
 
         const val BASE_URL = "https://jsonplaceholder.typicode.com/"
 
-        const val BLOG_ENDPOINT = "api/blogs/all/1"
-        const val PROJECTS_ENDPOINT = "api/projects/all/1"
         const val SERVICES_ENDPOINT = "api/services"
         const val unAuthorizeAccessMessage ="Full Authentication Required"
         const val PHOTOS = "photos"

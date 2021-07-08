@@ -3,45 +3,39 @@ package com.sarah.objectives.features.photos.view
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
 import com.sarah.objectives.R
 import com.sarah.objectives.base.BaseFragment
+import com.sarah.objectives.base.Resource
 import com.sarah.objectives.callbacks.onPhotoClickListener
 import com.sarah.objectives.data.photos.PhotosItem
-import com.sarah.objectives.databinding.FragmentAllProjectsBinding
-import com.sarah.objectives.datasource.PostDataSource
-import com.sarah.objectives.datasource.PhotoPagedDataSource
-import com.sarah.objectives.features.photos.adapter.PhotoPagedAdapter
+import com.sarah.objectives.databinding.FragmentAllPhotosBinding
+import com.sarah.objectives.datasource.PhotoDataSource
+import com.sarah.objectives.features.photos.adapter.PhotoAdapter
 import com.sarah.objectives.features.photos.viewmodel.PhotoViewModel
 import com.sarah.objectives.repositories.PhotoRepository
-import com.sarah.objectives.utils.hide
-import com.sarah.objectives.utils.init
-import com.sarah.objectives.utils.routeTo
+import com.sarah.objectives.utils.*
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class AllPhotosFragment : BaseFragment<FragmentAllProjectsBinding, PhotoRepository>(),
+class AllPhotosFragment : BaseFragment<FragmentAllPhotosBinding, PhotoRepository>(),
     onPhotoClickListener {
 
     private lateinit var viewModel: PhotoViewModel
-    private lateinit var photoAdapter: PhotoPagedAdapter
+    private lateinit var photoAdapter: PhotoAdapter
 
     @Inject
-    lateinit var dataSource: PostDataSource
+    lateinit var dataSource: PhotoDataSource
 
-    @Inject
-    lateinit var pagedDataDataSource: PhotoPagedDataSource
 
     override fun getFragmentBinding(
         inflater: LayoutInflater,
         container: ViewGroup?
-    ): FragmentAllProjectsBinding = FragmentAllProjectsBinding.inflate(inflater, container, false)
+    ) = FragmentAllPhotosBinding.inflate(inflater, container, false)
 
-    override fun getRepository(): PhotoRepository = PhotoRepository(dataSource,pagedDataDataSource)
+    override fun getRepository(): PhotoRepository = PhotoRepository(dataSource)
 
     override fun onPostInit() {
         setupViewModel()
@@ -50,7 +44,7 @@ class AllPhotosFragment : BaseFragment<FragmentAllProjectsBinding, PhotoReposito
     }
 
     private fun setupAdapter() {
-        photoAdapter = PhotoPagedAdapter(this)
+        photoAdapter = PhotoAdapter(this)
     }
 
     private fun setupViewModel() {
@@ -58,19 +52,30 @@ class AllPhotosFragment : BaseFragment<FragmentAllProjectsBinding, PhotoReposito
     }
 
     override fun onPhotoClicked(data: PhotosItem) {
-        routeTo(R.id.action_allProjectFragment_to_projectDetailsFragment, bundleOf("project" to data))
+        routeTo(
+            R.id.action_allProjectFragment_to_projectDetailsFragment,
+            bundleOf("photos" to data)
+        )
 
     }
 
     private fun setupData() {
-        lifecycleScope.launch {
-            viewModel.getPaginatedPhotos()?.let {
-                it.collectLatest {
+        viewModel.getAllPhotos()
+        viewModel.allPhotos.observe(viewLifecycleOwner, Observer {
+            when (it.status) {
+                Resource.Status.LOADING -> {
+                    binding.progressBar.show()
+                }
+                Resource.Status.SUCCESS -> {
                     binding.progressBar.hide()
-                    photoAdapter.submitData(it)
+                    photoAdapter.addPhotos(it.data!!)
+                }
+                Resource.Status.ERROR -> {
+                    binding.progressBar.show()
+                    showToast(it.responseError!!.error)
                 }
             }
-        }
+        })
         setupRecyclerView()
 
     }

@@ -16,7 +16,6 @@ import com.sarah.objectives.datasource.SplashDataSource
 import com.sarah.objectives.features.splash.viewmodel.SplashViewModel
 import com.sarah.objectives.preferences.PreferenceHelper
 import com.sarah.objectives.repositories.SplashRepository
-import com.sarah.objectives.utils.Constants.PREFERENCES.IS_LOGGED_IN
 import com.sarah.objectives.utils.Constants.PREFERENCES.ON_BOARDING_FINISHED
 import com.sarah.objectives.utils.routeTo
 import dagger.hilt.android.AndroidEntryPoint
@@ -50,8 +49,8 @@ class SplashFragment : BaseFragment<FragmentSplashBinding, SplashRepository>(),D
     }
 
     private fun setupObservers() {
-        setupBlogObserver()
-        setupProjectsObserver()
+        setupPostObserver()
+        setupPhotosObserver()
         enableScreenTimeout(3000)
 
     }
@@ -62,9 +61,8 @@ class SplashFragment : BaseFragment<FragmentSplashBinding, SplashRepository>(),D
 
     private fun getProjects() = viewModel.getImages()
 
-    private fun getServices() = viewModel.getServices()
 
-    private fun setupBlogObserver() {
+    private fun setupPostObserver() {
 
         viewModel.postResponse.observe(viewLifecycleOwner, Observer {
             if (it.status == Resource.Status.SUCCESS) {
@@ -76,7 +74,7 @@ class SplashFragment : BaseFragment<FragmentSplashBinding, SplashRepository>(),D
         })
     }
 
-    private fun setupProjectsObserver() {
+    private fun setupPhotosObserver() {
         viewModel.imageResponse.observe(viewLifecycleOwner, Observer {
             if (it.status == Resource.Status.SUCCESS) {
                 viewModel.insertImages(it?.data!!.photoItems)

@@ -73,7 +73,7 @@
         android:id="@+id/allBlogFragment"
         android:name="com.sarah.objectives.features.posts.view.AllPostFragment"
         android:label="All Blog "
-        tools:layout="@layout/fragment_all_blog" >
+        tools:layout="@layout/fragment_all_posts" >
         <action
             android:id="@+id/action_allBlogFragment_to_blogDetailFragment"
             app:destination="@id/postDetailFragment" />
@@ -83,7 +83,7 @@
         android:id="@+id/allProjectFragment"
         android:name="com.sarah.objectives.features.photos.view.AllPhotosFragment"
         android:label="All Projects"
-        tools:layout="@layout/fragment_all_projects" >
+        tools:layout="@layout/fragment_all_photos" >
         <action
             android:id="@+id/action_allProjectFragment_to_projectDetailsFragment"
             app:destination="@id/photoDetailsFragment" />

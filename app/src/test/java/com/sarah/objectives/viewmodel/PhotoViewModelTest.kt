@@ -1,38 +1,43 @@
 package com.sarah.objectives.viewmodel
 
 import android.content.Context
-import androidx.paging.PagingData
-import com.google.common.truth.Truth
-import com.sarah.objectives.apiservice.PostAPIService
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import com.google.common.truth.Truth.assertThat
+import com.sarah.objectives.apiservice.PhotoAPIService
 import com.sarah.objectives.config.dao.PhotoDao
 import com.sarah.objectives.config.db.ObjectiveDatabase
-import com.sarah.objectives.data.projects.Data
-import com.sarah.objectives.datasource.PostDataSource
-import com.sarah.objectives.datasource.PhotoPagedDataSource
+import com.sarah.objectives.datasource.PhotoDataSource
 import com.sarah.objectives.features.photos.viewmodel.PhotoViewModel
 import com.sarah.objectives.repositories.PhotoRepository
-import com.sarah.objectives.utils.TestUtils
+import com.sarah.objectives.utils.LiveDataUtils.getOrAwaitValueTest
 import com.sarah.objectives.utils.getDatabase
 import com.sarah.objectives.utils.getProjectDao
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.test.TestCoroutineDispatcher
+import kotlinx.coroutines.test.runBlockingTest
+import kotlinx.coroutines.test.setMain
 import org.junit.After
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 import org.mockito.Mock
 import org.mockito.MockitoAnnotations
+import java.util.concurrent.TimeUnit
 
 @ExperimentalCoroutinesApi
 class PhotoViewModelTest {
 
     private lateinit var repository: PhotoRepository
-    private lateinit var dataSource: PostDataSource
-    private lateinit var pagingDataDataSource: PhotoPagedDataSource
+    private lateinit var dataSource: PhotoDataSource
+
+    @get:Rule
+    var instantExecutorRule: InstantTaskExecutorRule = InstantTaskExecutorRule()
+    private val testDispatcher = TestCoroutineDispatcher()
 
     @Mock
-    private lateinit var apiService: PostAPIService
+    private lateinit var apiService: PhotoAPIService
 
     @Mock
     private lateinit var context: Context
@@ -44,10 +49,10 @@ class PhotoViewModelTest {
     @Before
     fun setup() {
         MockitoAnnotations.initMocks(this)
+        Dispatchers.setMain(testDispatcher)
         setupDatabase()
-        dataSource = PostDataSource(apiService, db)
-        pagingDataDataSource = PhotoPagedDataSource(apiService)
-        repository = PhotoRepository(dataSource, pagingDataDataSource)
+        dataSource = PhotoDataSource(apiService, db)
+        repository = PhotoRepository(dataSource)
         viewModel = PhotoViewModel(repository)
 
     }
@@ -63,13 +68,10 @@ class PhotoViewModelTest {
     }
 
     @Test
-    fun `get paginated blog`() = runBlocking {
-        val data = TestUtils.project
-        val listOfProjects = listOf(data, data, data, data)
-        val flow = flow<PagingData<List<Data>>> {}
-        flow.collect {
-            Truth.assertThat(repository.getPaginatedPhotos()).isEqualTo(listOfProjects)
-
-        }
+    fun `get all photos`() = runBlockingTest {
+        viewModel.getAllPhotos()
+        val liveData = viewModel.allPhotos.getOrAwaitValueTest(5,TimeUnit.SECONDS)
+        assertThat(liveData).isEqualTo(repository.getAllPhotos())
     }
+
 }

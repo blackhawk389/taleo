@@ -14,8 +14,6 @@ class SplashRepository @Inject constructor(private val dataSource: SplashDataSou
 
     suspend fun getPhotos() = dataSource.getPhotos()
 
-    suspend fun getServices() = dataSource.getServices()
-
     suspend fun insertPosts(posts: ArrayList<PostsItem>) = dataSource.insertPosts(posts)
 
     suspend fun insertPhotos(images: ArrayList<PhotosItem>) = dataSource.addImages(images)

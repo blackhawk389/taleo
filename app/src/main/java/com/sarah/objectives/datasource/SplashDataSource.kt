@@ -25,10 +25,6 @@ class SplashDataSource @Inject constructor(
         apiService.getPhotos()
     }
 
-    suspend fun getServices() = getResponse {
-        apiService.getServices()
-    }
-
     suspend fun insertPosts(data: ArrayList<PostsItem>){
         database.postDao().insert(data)
     }

@@ -10,6 +10,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:id="@+id/homeFragmentView"
         android:background="@color/app_background">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -29,16 +30,6 @@
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="Hi Sarah" />
 
-            <ImageView
-                android:id="@+id/logout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_logout"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                android:layout_marginTop="@dimen/unit_5x"
-                android:layout_marginEnd="@dimen/unit_2x" />
-
             <TextView
                 android:id="@+id/detailsText"
                 style="@style/app_text"
@@ -46,32 +37,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/unit_1x"
                 android:padding="@dimen/unit_1x"
-                android:text="@string/we_help_you_to_construct_a_better_place"
+                android:text="@string/objective_2021"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/headerText" />
 
-            <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/adView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="@dimen/unit_2x"
-                ads:adSize="BANNER"
-                ads:adUnitId="ca-app-pub-3940256099942544/6300978111"
-                ads:layout_constraintLeft_toLeftOf="parent"
-                ads:layout_constraintRight_toRightOf="parent"
-                ads:layout_constraintTop_toBottomOf="@id/detailsText" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/servicesRecyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/unit_2x"
-                android:orientation="horizontal"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/adView" />
 
             <TextView
                 android:id="@+id/recentBlogsTitle"
@@ -82,7 +51,7 @@
                 android:layout_marginTop="@dimen/unit_4x"
                 android:text="@string/posts"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/servicesRecyclerView" />
+                app:layout_constraintTop_toBottomOf="@id/detailsText" />
 
             <TextView
                 android:id="@+id/see_all_blogs"
@@ -97,7 +66,7 @@
                 android:textSize="@dimen/font_14sp"
                 android:textStyle="bold"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/servicesRecyclerView" />
+                app:layout_constraintTop_toBottomOf="@id/detailsText" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recentBlogsRecyclerView"
