@@ -121,10 +121,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeRepository>(),
 
     private fun setupPostRecyclerView() {
         binding.recentBlogsRecyclerView.apply {
-            layoutManager =
-                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
             adapter = postAdapter
-
         }
     }
 

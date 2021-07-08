@@ -17,6 +17,7 @@ import org.junit.Rule
 import org.junit.Test
 import org.mockito.Mock
 import org.mockito.MockitoAnnotations
+import java.util.concurrent.TimeUnit
 
 @ExperimentalCoroutinesApi
 class HomeViewModelTest {
@@ -44,19 +45,19 @@ class HomeViewModelTest {
     }
 
     @Test
-    fun `request blogs`() = runBlockingTest {
+    fun `request posts`() = runBlockingTest {
         viewModel.requestPosts()
-        val liveData = viewModel.posts.getOrAwaitValueTest()
-        val blog = repository.getRecentPosts()
-        assertThat(blog).isEqualTo(liveData)
+        val liveData = viewModel.posts.getOrAwaitValueTest(5,TimeUnit.SECONDS)
+        val posts = repository.getRecentPosts()
+        assertThat(liveData).isEqualTo(posts)
     }
 
     @Test
-    fun `request projects`() = runBlockingTest {
+    fun `request photos`() = runBlockingTest {
         viewModel.requestImages()
         val liveData = viewModel.photoItems.getOrAwaitValueTest()
-        val projects = repository.getPhotoItems()
-        assertThat(projects).isEqualTo(liveData)
+        val photos = repository.getPhotoItems()
+        assertThat(liveData).isEqualTo(photos)
     }
 
 }

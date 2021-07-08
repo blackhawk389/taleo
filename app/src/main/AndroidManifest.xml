@@ -23,6 +23,10 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.Bizzcon">
+
+        <uses-library android:name="android.test.runner"
+            android:required="false" />
+
         <activity android:name="com.sarah.objectives.app.AppActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

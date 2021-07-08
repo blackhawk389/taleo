@@ -23,6 +23,7 @@ import org.junit.Rule
 import org.junit.Test
 import org.mockito.Mock
 import org.mockito.MockitoAnnotations
+import java.util.concurrent.TimeUnit
 
 @ExperimentalCoroutinesApi
 class PostViewModelTest {
@@ -30,12 +31,12 @@ class PostViewModelTest {
     private lateinit var repository: PostRepository
     private lateinit var dataSource: PostDataSource
 
+    @get:Rule
+    var instantExecutorRule: InstantTaskExecutorRule = InstantTaskExecutorRule()
+    private val testDispatcher = TestCoroutineDispatcher()
     @Mock
     private lateinit var apiService: PostAPIService
 
-    @get:Rule
-    val instantTaskExecutorRule = InstantTaskExecutorRule()
-    val dispatcher = TestCoroutineDispatcher()
     @Mock
     private lateinit var context: Context
     private lateinit var db: ObjectiveDatabase
@@ -46,7 +47,7 @@ class PostViewModelTest {
     @Before
     fun setup() {
         MockitoAnnotations.initMocks(this)
-        Dispatchers.setMain(dispatcher)
+        Dispatchers.setMain(testDispatcher)
         setupDatabase()
         dataSource = PostDataSource(apiService, db)
         repository = PostRepository(dataSource)
@@ -67,7 +68,8 @@ class PostViewModelTest {
     @Test
     fun  `get all posts` () = runBlockingTest {
         viewModel.getAllPosts()
-        assertThat(viewModel.getAllPosts()).isEqualTo(repository.getAllPosts())
+        val liveData = viewModel.allPosts.getOrAwaitValueTest(5,TimeUnit.SECONDS)
+        assertThat(liveData).isEqualTo(repository.getAllPosts())
     }
 
 }

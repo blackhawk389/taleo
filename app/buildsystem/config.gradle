@@ -20,4 +20,12 @@ android {
         dataBinding = true
         viewBinding true
     }
+
+    android {
+        testOptions {
+            unitTests {
+                includeAndroidResources = true
+            }
+        }
+    }
 }

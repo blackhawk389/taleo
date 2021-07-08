@@ -3,12 +3,9 @@ package com.sarah.objectives.features.photos.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.paging.PagingData
-import androidx.paging.cachedIn
 import com.sarah.objectives.base.Resource
 import com.sarah.objectives.data.photos.PhotosItem
 import com.sarah.objectives.repositories.PhotoRepository
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 

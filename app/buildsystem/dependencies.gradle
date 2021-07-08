@@ -6,33 +6,9 @@ dependencies {
     implementation 'com.google.android.material:material:1.3.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
 
-    //Ads
-    implementation 'androidx.ads:ads-identifier:1.0.0-alpha04'
-    implementation 'com.google.android.gms:play-services-ads:20.1.0'
 
     //Work Manager
     implementation "androidx.work:work-runtime-ktx:2.5.0"
-
-    //Paging 3
-    def paging_version = "3.0.0"
-
-    implementation "androidx.paging:paging-runtime:$paging_version"
-
-    // alternatively - without Android dependencies for tests
-    testImplementation "androidx.paging:paging-common:$paging_version"
-
-    //CameraX
-    implementation "androidx.camera:camera-core:1.1.0-alpha03"
-    implementation "androidx.camera:camera-camera2:1.1.0-alpha03"
-    implementation "androidx.camera:camera-lifecycle:1.1.0-alpha03"
-    implementation "androidx.camera:camera-view:1.0.0-alpha23"
-    implementation "androidx.camera:camera-extensions:1.0.0-alpha23"
-
-    //Hilt
-    implementation 'com.google.dagger:hilt-android:2.28.1-alpha'
-    implementation "androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha01"
-    kapt 'com.google.dagger:hilt-android-compiler:2.28.1-alpha'
-    kapt "androidx.hilt:hilt-compiler:1.0.0-alpha01"
 
     //Retrofit and Ok Http
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
@@ -56,8 +32,6 @@ dependencies {
     implementation 'com.jakewharton.timber:timber:4.7.1'
     //Event Bus
     implementation 'org.greenrobot:eventbus:3.2.0'
-    //Easy Permissions
-    implementation 'pub.devrel:easypermissions:3.0.0'
 
     //Glide
     implementation 'com.github.bumptech.glide:glide:4.12.0'
@@ -65,11 +39,6 @@ dependencies {
     //Lottie file animations
     implementation "com.airbnb.android:lottie:3.6.1"
 
-    //maps dependencies
-    implementation 'com.google.android.gms:play-services-maps:17.0.0'
-
-    // Fused Location
-    implementation 'com.google.android.gms:play-services-location:18.0.0'
     //Room Database for offline support
     def room_version = "2.3.0"
     implementation "androidx.room:room-runtime:$room_version"
@@ -79,21 +48,76 @@ dependencies {
 
     testImplementation "androidx.room:room-testing:$room_version"
 
-    //CameraX dependency
-    def camerax_version = "1.0.0-beta07"
-    implementation "androidx.camera:camera-camera2:1.1.0-alpha03"
-    implementation "androidx.camera:camera-lifecycle:1.1.0-alpha03"
-    implementation "androidx.camera:camera-view:1.0.0-alpha23"
-
-    //Circular Image View
-    implementation 'com.mikhaellopez:circularimageview:4.2.0'
     //Truth for assertion
     testImplementation "com.google.truth:truth:1.1.2"
     //Mocktio for mocking
     testImplementation "org.mockito:mockito-core:3.3.3"
+    androidTestImplementation 'androidx.arch.core:core-testing:2.1.0'
     testImplementation 'androidx.arch.core:core-testing:2.1.0'
     testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.3.8'
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    testImplementation 'junit:junit:4.12'
+
+    // Espresso
+    def androidx_test_espresso = "3.1.0"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$androidx_test_espresso"
+    androidTestImplementation "androidx.test.espresso:espresso-contrib:$androidx_test_espresso"
+    implementation "androidx.test.espresso:espresso-idling-resource:$androidx_test_espresso"
+
+    // Mockk.io
+    def mockk_version = "1.9.3"
+    androidTestImplementation "io.mockk:mockk-android:$mockk_version"
+
+    // androidx.test
+    def androidx_test = "1.1.0"
+    androidTestImplementation "androidx.test:runner:$androidx_test"
+    androidTestImplementation "androidx.test:core:$androidx_test"
+    androidTestImplementation "androidx.test.ext:junit-ktx:$androidx_test"
+
+    debugImplementation "androidx.fragment:fragment-testing:1.3.5"
+    androidTestImplementation 'org.robolectric:annotations:4.5.1'
+
+
+
+    //Hilt
+    implementation 'com.google.dagger:hilt-android:2.28.1-alpha'
+    implementation "androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha01"
+    kapt 'com.google.dagger:hilt-android-compiler:2.28.1-alpha'
+    kapt "androidx.hilt:hilt-compiler:1.0.0-alpha01"
+    testImplementation 'org.robolectric:robolectric:4.4'
+    // Hilt for Robolectric tests.
+    testImplementation "com.google.dagger:hilt-android-testing:2.28.1-alpha"
+
+
+    // ...with Kotlin.
+    kaptTest 'com.google.dagger:hilt-android-compiler:1.0.0-alpha01'
+
+
+    // For instrumented tests.
+    androidTestImplementation 'com.google.dagger:hilt-android-testing:2.28.1-alpha'
+    // ...with Kotlin.
+    kaptAndroidTest 'com.google.dagger:hilt-android-compiler:2.28.1-alpha'
+    // Core library
+    androidTestImplementation('androidx.test:core:1.0.0')
+
+    // AndroidJUnitRunner and JUnit Rules
+    androidTestImplementation('androidx.test:runner:1.1.0')
+    androidTestImplementation('androidx.test:rules:1.1.0')
+    // Assertions
+    androidTestImplementation('androidx.test.ext:junit:1.0.0')
+    androidTestImplementation('androidx.test.ext:truth:1.0.0')
+    androidTestImplementation('com.google.truth:truth:0.42')
+
+    // Espresso dependencies
+    androidTestImplementation('androidx.test.espresso:espresso-core:3.1.0')
+    androidTestImplementation('androidx.test.espresso:espresso-contrib:3.1.0')
+    androidTestImplementation('androidx.test.espresso:espresso-intents:3.1.0')
+    androidTestImplementation('androidx.test.espresso:espresso-accessibility:3.1.0')
+    androidTestImplementation('androidx.test.espresso:espresso-web:3.1.0')
+    androidTestImplementation('androidx.test.espresso.idling:idling-concurrent:3.1.0')
+
+    // The following Espresso dependency can be either "implementation"
+    // or "androidTestImplementation", depending on whether you want the
+    // dependency to appear on your APK's compile classpath or the test APK
+    // classpath.
+    androidTestImplementation('androidx.test.espresso:espresso-idling-resource:3.1.0')
 }
