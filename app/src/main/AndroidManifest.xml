@@ -22,7 +22,7 @@
         android:label="@string/app_name"
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Bizzcon">
+        android:theme="@style/Theme.Objectives">
 
         <uses-library android:name="android.test.runner"
             android:required="false" />

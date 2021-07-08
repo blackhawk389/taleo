@@ -33,15 +33,14 @@ class IntroFragment : BaseFragment<FragmentIntroBinding, EmptyRepository>(), Int
         introAdapter.addIntroItems(setupData())
         binding.introRecyclerView.apply {
             adapter = introAdapter
-            layoutManager =
-                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         }
     }
 
     private fun setupData(): ArrayList<IntroModel> {
-        val introModelOne = IntroModel("Title No 01", getString(R.string.dummy_text), R.raw.people)
-        val introModelTwo = IntroModel("Title No 02", getString(R.string.dummy_text), R.raw.teamwork)
-        val introModelThree = IntroModel("Title No 03", getString(R.string.dummy_text), R.raw.get_a_quote)
+        val introModelOne = IntroModel(getString(R.string.intro_posts), getString(R.string.dummy_text), R.raw.post)
+        val introModelTwo = IntroModel(getString(R.string.intro_image), getString(R.string.dummy_text), R.raw.image_02)
+        val introModelThree = IntroModel(getString(R.string.intro_fun), getString(R.string.dummy_text), R.raw.image_01)
         return arrayListOf(introModelOne, introModelTwo, introModelThree)
     }
 
